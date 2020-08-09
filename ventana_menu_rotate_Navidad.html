@@ -1,0 +1,302 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="content-type" content="text/html" charset="utf-8" />
+<meta http-equiv="Content-Language" content="es-es">
+<META NAME="Language" CONTENT="Spanish">
+
+<meta name="description" content=" Juan Manuel Barros Pazos XBDesign Diseño web en Palma de Mallorca, cursos de formación gratuitos y manuales de formación, historia de Galicia y de Mallorca " />
+
+<meta name="keywords" content=" Juan Manuel Barros Pazos XBDesign Diseño web en Palma de Mallorca, cursos de formación gratuitos y manuales de formación, historia de Galicia y de Mallorca " />
+
+<meta name="robots" content="all, index, follow" />
+<meta name="audience" content="All" />
+
+<title>Juan Barros Pazos</title>
+
+<style type="text/css">
+body {
+	text-align: center;
+	color: #666666;
+	background-color: #d8f0e7;
+	margin-top: 0px;
+	padding-top: 0px;
+}
+#head {
+	float: none;
+	width: auto;
+	margin-top: 0.5%;
+	height: 60px;
+	margin-bottom: 12px;
+	margin-left: 12px;
+	margin-right: 12px;
+	border: medium double #246C6C;
+	padding-top: 8px;
+	color: #246C6C;
+	font-style: italic;
+	font-weight: normal;
+	font-family: "Times New Roman", Times, serif;
+	text-align: center;
+}
+
+#footer  {
+	height: auto;
+	width: auto;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 14px;
+	font-style: normal;
+	text-align: center;
+	color: #333333;
+	margin-top: 52%;
+}
+
+
+#footer  a  {
+	color: #333333;
+	text-decoration: none;
+}
+
+#footer  a:hover  {
+	color: #666666;
+	text-decoration: none;
+}
+
+html {
+		overflow: hidden;
+}
+		
+#screen {
+	position: fixed;
+	overflow: hidden;
+	text-align: center;
+	margin-left: -170px;
+	z-index: 1;
+	vertical-align: middle;
+	height: 290px;
+	width: 540px;
+	top: 28%;
+	left: 40%;
+}
+#screen img {
+	position: absolute;
+	left: -10000px;
+	filter: alpha(opacity=100);
+	opacity: 1;
+	-ms-interpolation-mode:nearest-neighbor;
+}
+	
+	
+#ventana-flotante {
+	width: 560px;  /* Ancho de la ventana */
+	height: 300px;  /* Alto de la ventana */
+	background: #E4F1F1;  /* Color de fondo */
+	position: fixed;
+	top: 27%;
+	left: 40%;
+	margin-left: -180px;
+	border: 1px solid #408080;  /* Borde de la ventana */
+	box-shadow: 0 5px 25px rgba(0,0,0,.1);  /* Sombra */
+	z-index: 999;
+}
+
+#ventana-flotante .cerrar {
+	float: right;
+	border-bottom: 1px solid #408080;
+	border-left: 1px solid #408080;
+	color: #990000;
+	background: #E4F1F1;
+	line-height: 17px;
+	text-decoration: none;
+	padding: 0px 4px;
+	font-family: Arial;
+	border-radius: 0 0 0 5px;
+	box-shadow: -1px 1px white;
+	font-size: 18px;
+	-webkit-transition: .3s;
+	-moz-transition: .3s;
+	-o-transition: .3s;
+	-ms-transition: .3s;
+}
+
+#ventana-flotante .cerrar:hover {
+	background: #990000;
+	color: white;
+	text-decoration: none;
+	text-shadow: -1px -1px #990000;;
+	border-bottom: 1px solid #990000;;
+	border-left: 1px solid #990000;;
+}
+
+#ventana-flotante .contenido {
+	padding: 5px;
+	box-shadow: inset 1px 1px white;
+	/*background: #deffc4;   Fondo del mensaje */
+	/*border: 1px solid #9eff9e;   Borde del mensaje */
+	font-size: 20px;  /* Tamaño del texto del mensaje */
+	color: #555;  /* Color del texto del mensaje */
+	text-shadow: 1px 1px white;
+	margin: 0 auto;
+	border-radius: 4px;
+}
+
+#ventana-flotante a {
+    color: #666;
+    text-decoration: none;
+}
+
+#ventana-flotante a:hover {
+    color: #990000;
+    text-decoration: none;
+}
+
+.oculto {-webkit-transition:1s;-moz-transition:1s;-o-transition:1s;-ms-transition:1s;opacity:0;-ms-opacity:0;-moz-opacity:0;visibility:hidden;}
+
+</style>
+
+<script type="text/javascript">
+
+var m = {
+	Z   : 100,
+	xm  : 0,
+	xmm : .25,
+	ymm : 0,
+	ym  : 0,
+	mx  : 0,
+	nx  : 0,
+	ny  : 0,
+	nw  : 0,
+	nh  : 0,
+	xR  : 0,
+	nI  : 0,
+	scr : 0,
+	img : 0,
+
+	run : function () {
+		m.xm += (m.xmm - m.xm) * .1;
+		if (m.ym < m.nw * .25) m.ym++;
+		m.xR += m.xm;
+		for (var i = 0; i < m.nI; i++){
+			var A = (i * 360 / m.nI) + m.xR;
+			var x = Math.cos(A * (Math.PI / 180));
+			var y = Math.sin(A * (Math.PI / 180));
+			var o = m.img[i];
+			o.style.width  = ''.concat(Math.round(Math.abs(y * m.ym) + y * m.Z), 'px');
+			o.style.left   = ''.concat(Math.round((m.nw * .5) + x * ((m.nw * .5) - (m.nw * .05)) - ((Math.abs(y * m.ym) + y * m.Z) * .5)), 'px');
+			o.style.height = ''.concat(Math.round(m.ym + y * m.Z), 'px');
+			o.style.top    = ''.concat(Math.round((m.nh * .5) - (m.ym * .5) - y * (m.Z * .5) - (m.ymm * y)), 'px');
+			o.style.zIndex = 1000 + Math.round(y);
+			m.setOpacity(o, (y * 50) + 100);
+		}
+		setTimeout(m.run, 16);
+	},
+
+	resize : function () {
+		m.nx  = m.scr.offsetLeft;
+		m.ny  = m.scr.offsetTop;
+		m.nw  = m.scr.offsetWidth;
+		m.nh  = m.scr.offsetHeight;
+	},
+
+	mousemove : function (e) {
+		if (window.event) e = window.event;
+		m.xmm = (m.nx + (m.nw * .5) - (e.x || e.clientX)) / (m.nw * .25);
+		m.ymm = (m.ny + (m.nh * .5) - (e.y || e.clientY)) / (m.nh * .005);
+	},
+
+	setOpacity : function (obj, o) {
+		if (o < 0) o = 0; else if (o > 100) o = 100;
+		if (obj.filters) obj.filters.alpha.opacity = o;
+		else obj.style.opacity = o / 100;
+	},
+
+	init : function () {
+		m.scr = document.getElementById("screen");
+		m.img = m.scr.getElementsByTagName("img");
+		m.nI  = m.img.length;
+		window.onresize = m.resize;
+		window.document.onmousemove = m.mousemove;
+		m.resize();
+		m.ym = m.Z;
+		m.run();
+	}
+}
+
+onload = function() {
+	m.init();
+}
+</script>
+
+<link href="favicon.ico" type='image/ico' rel='shortcut icon' />
+
+</head>
+
+<body id="cuerpo" topmargin="0">
+
+  <div id="head"> 
+  			<font size='6'>
+  							JUAN MANUEL BARR&Oacute;S PAZOS
+            </font>
+  	<br />
+			<font size='2'>
+    						PALMA DE MALLORCA ~ PROGRAMACI&Oacute;N & DISE&Ntilde;O.
+          	</font>
+   </div>
+  
+  
+<div style="clear:both"></div>
+  
+
+
+<div id='ventana-flotante'>
+   <a class='cerrar' href='javascript:void(0);' onclick='document.getElementById(&apos;ventana-flotante&apos;).className = &apos;oculto&apos;'>X</a>
+        <!--[if IE]>
+        <style>
+        .oculto {display:none}
+        </style>
+        <![endif]-->
+       <div class='contenido' align="center" style="padding-top:20px">
+    <div id="screen"> 
+  
+  <a href="#" target="_blank" onclick='document.getElementById(&apos;ventana-flotante&apos;).className = &apos;oculto&apos;'> 
+  <img border="0" alt="Agradecimientos" src="ImgNadal/00.png" /> 
+  </a> 
+  
+  <a href="#" target="_blank" onclick='document.getElementById(&apos;ventana-flotante&apos;).className = &apos;oculto&apos;'> 
+  <img border="0" alt="Contactos" src="ImgNadal/01.png" /> 
+  </a> 
+  
+  <a href="#" target="_blank" onclick='document.getElementById(&apos;ventana-flotante&apos;).className = &apos;oculto&apos;'> 
+  <img border="0" alt="Descargas_3D" src="ImgNadal/02.png" /> 
+  </a> 
+  
+
+  <a href="#" target="_blank" onclick='document.getElementById(&apos;ventana-flotante&apos;).className = &apos;oculto&apos;'> 
+  <img border="0" alt="Palma 3D" src="ImgNadal/03.png" /> 
+  </a> 
+ 
+  <a href="#" target="_blank" onclick='document.getElementById(&apos;ventana-flotante&apos;).className = &apos;oculto&apos;'> 
+  <img border="0" alt="Puzzle" src="ImgNadal/04.png" /> 
+  </a> 
+  
+  <a href="#" target="_blank" onclick='document.getElementById(&apos;ventana-flotante&apos;).className = &apos;oculto&apos;'> 
+  <img border="0" alt="Tutoriales" src="ImgNadal/05.png" /> 
+  </a> 
+  
+ 			</div>
+       </div>
+	</div>
+      
+<div style="clear:both"></div>
+
+<!-- Inicio footer -->
+<div id="footer">
+  Web creada por &copy; Juan Barr&oacute;s Pazos 2001
+</div>
+<!-- Fin footer -->
+
+
+</body>
+
+</html>
